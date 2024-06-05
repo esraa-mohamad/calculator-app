@@ -2,9 +2,9 @@ import 'package:calculator_app/presentation/resources/color_manager.dart';
 import 'package:calculator_app/presentation/resources/fonts_manager.dart';
 import 'package:flutter/material.dart';
 
-class StyleManager {
+abstract class StyleManager {
 
-  TextStyle getStyleRegular(){
+  static TextStyle getStyleRegular(){
     return const TextStyle(
       color: ColorManager.babyBlue,
       fontWeight: FontWeightManager.regular,
@@ -13,20 +13,20 @@ class StyleManager {
     );
   }
 
-  TextStyle getStyleMedium(){
+  static TextStyle getStyleMedium(){
     return const TextStyle(
       color: ColorManager.white,
       fontWeight: FontWeightManager.medium,
-      fontSize: FontSize.s18 ,
+      fontSize: FontSize.s30,
       fontFamily: FontFamilyManager.textFont,
     );
   }
 
-  TextStyle getStyleSemiBold(){
+  static TextStyle getStyleSemiBold(){
     return const TextStyle(
-      color: ColorManager.babyBlue,
+      color: ColorManager.white,
       fontWeight: FontWeightManager.semiBold,
-      fontSize: FontSize.s16 ,
+      fontSize: FontSize.s30 ,
       fontFamily: FontFamilyManager.numberFont,
     );
   }
