@@ -4,6 +4,15 @@ import 'package:flutter/material.dart';
 
 abstract class StyleManager {
 
+  static TextStyle getStyleLight(){
+    return const TextStyle(
+      color: ColorManager.lightBabyBlue,
+      fontWeight: FontWeightManager.light,
+      fontSize: FontSize.s16 ,
+      fontFamily: FontFamilyManager.textFont,
+    );
+  }
+
   static TextStyle getStyleRegular(){
     return const TextStyle(
       color: ColorManager.white,

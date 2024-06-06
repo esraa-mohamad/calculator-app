@@ -10,7 +10,7 @@ class ResultSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(
-          horizontal: AppPadding.p8,
+          horizontal: AppPadding.p18,
           vertical: AppPadding.p40
       ),
       child:  Column(
