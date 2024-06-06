@@ -6,9 +6,9 @@ abstract class StyleManager {
 
   static TextStyle getStyleRegular(){
     return const TextStyle(
-      color: ColorManager.babyBlue,
-      fontWeight: FontWeightManager.regular,
-      fontSize: FontSize.s16 ,
+      color: ColorManager.white,
+      fontWeight: FontWeightManager.semiBold,
+      fontSize: FontSize.s25 ,
       fontFamily: FontFamilyManager.textFont,
     );
   }
@@ -24,7 +24,7 @@ abstract class StyleManager {
 
   static TextStyle getStyleSemiBold(){
     return const TextStyle(
-      color: ColorManager.white,
+      color: ColorManager.babyBlue,
       fontWeight: FontWeightManager.semiBold,
       fontSize: FontSize.s30 ,
       fontFamily: FontFamilyManager.numberFont,

@@ -18,7 +18,7 @@ class CircleShape extends StatelessWidget {
         onPressed: (){},
         child: Text(
             text,
-            style: StyleManager.getStyleSemiBold()
+            style: StyleManager.getStyleRegular()
         ),
       ),
     );
