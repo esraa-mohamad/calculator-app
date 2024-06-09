@@ -2,13 +2,17 @@ import 'package:calculator_app/presentation/resources/routes_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'data/provider/calculator_provider.dart';
 import 'data/theme/change_theme.dart';
 import 'presentation/resources/change_theme_data.dart';
 
 void main() {
   runApp(
-    ChangeNotifierProvider(
-      create: (_) => ThemeProvider(),
+    MultiProvider(
+      providers: [
+       ChangeNotifierProvider(create: (_) =>ThemeProvider()),
+        ChangeNotifierProvider(create: (_) => CalculatorProvider()),
+      ],
       child: const MyApp(),
     ),
   );

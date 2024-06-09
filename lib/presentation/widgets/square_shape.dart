@@ -13,7 +13,8 @@ class SquareShape extends StatelessWidget {
       this.fontSize,
       this.fontFamily,
       this.colorText,
-      this.colorShape});
+      this.colorShape,
+      this.onPressed});
 
   final String text;
 
@@ -21,31 +22,33 @@ class SquareShape extends StatelessWidget {
 
   final String? fontFamily;
   final Color? colorText;
-    final Color? colorShape;
+  final Color? colorShape;
+  final void Function()? onPressed;
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<ThemeProvider>(
-        builder: (context , themeProvider , child){
-          final color = colorShape ?? (themeProvider.isDarkTheme ? ColorManager.lightBabyBlue : ColorManager.darkBlue);
-          return Container(
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(AppSize.s25),
-                color:color,
+    return Consumer<ThemeProvider>(builder: (context, themeProvider, child) {
+      final color = colorShape ??
+          (themeProvider.isDarkTheme
+              ? ColorManager.lightBabyBlue
+              : ColorManager.darkBlue);
+      return Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(AppSize.s25),
+          color: color,
+        ),
+        child: TextButton(
+          onPressed: onPressed,
+          child: Text(
+            text,
+            style: StyleManager.getStyleSemiBold(context)?.copyWith(
+              color: colorText,
+              fontSize: fontSize,
+              fontFamily: fontFamily,
             ),
-            child: TextButton(
-              onPressed: () {},
-              child: Text(
-                text,
-                style: StyleManager.getStyleSemiBold(context)?.copyWith(
-                  color: colorText,
-                  fontSize: fontSize,
-                  fontFamily: fontFamily,
-                ),
-              ),
-            ),
-          );
-        }
-    );
+          ),
+        ),
+      );
+    });
   }
 }
