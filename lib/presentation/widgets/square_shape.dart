@@ -1,4 +1,6 @@
+import 'package:calculator_app/data/theme/change_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../resources/color_manager.dart';
 import '../resources/style_manager.dart';
@@ -11,7 +13,7 @@ class SquareShape extends StatelessWidget {
       this.fontSize,
       this.fontFamily,
       this.colorText,
-      this.colorShape =ColorManager.darkBlue});
+      this.colorShape});
 
   final String text;
 
@@ -19,24 +21,31 @@ class SquareShape extends StatelessWidget {
 
   final String? fontFamily;
   final Color? colorText;
-  final Color colorShape;
+    final Color? colorShape;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(AppSize.s25), color: colorShape),
-      child: TextButton(
-        onPressed: () {},
-        child: Text(
-          text,
-          style: StyleManager.getStyleSemiBold().copyWith(
-            color: colorText,
-            fontSize: fontSize,
-            fontFamily: fontFamily,
-          ),
-        ),
-      ),
+    return Consumer<ThemeProvider>(
+        builder: (context , themeProvider , child){
+          final color = colorShape ?? (themeProvider.isDarkTheme ? ColorManager.lightBabyBlue : ColorManager.darkBlue);
+          return Container(
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(AppSize.s25),
+                color:color,
+            ),
+            child: TextButton(
+              onPressed: () {},
+              child: Text(
+                text,
+                style: StyleManager.getStyleSemiBold(context)?.copyWith(
+                  color: colorText,
+                  fontSize: fontSize,
+                  fontFamily: fontFamily,
+                ),
+              ),
+            ),
+          );
+        }
     );
   }
 }

@@ -1,42 +1,21 @@
-import 'package:calculator_app/presentation/resources/color_manager.dart';
-import 'package:calculator_app/presentation/resources/fonts_manager.dart';
+
 import 'package:flutter/material.dart';
 
 abstract class StyleManager {
 
-  static TextStyle getStyleLight(){
-    return const TextStyle(
-      color: ColorManager.lightBabyBlue,
-      fontWeight: FontWeightManager.light,
-      fontSize: FontSize.s16 ,
-      fontFamily: FontFamilyManager.textFont,
-    );
+  static TextStyle? getStyleLight(BuildContext context){
+    return Theme.of(context).textTheme.displaySmall;
   }
 
-  static TextStyle getStyleRegular(){
-    return const TextStyle(
-      color: ColorManager.white,
-      fontWeight: FontWeightManager.semiBold,
-      fontSize: FontSize.s25 ,
-      fontFamily: FontFamilyManager.textFont,
-    );
+  static TextStyle? getStyleRegular(BuildContext context){
+    return Theme.of(context).textTheme.displayMedium;
   }
 
-  static TextStyle getStyleMedium(){
-    return const TextStyle(
-      color: ColorManager.white,
-      fontWeight: FontWeightManager.medium,
-      fontSize: FontSize.s30,
-      fontFamily: FontFamilyManager.textFont,
-    );
+  static TextStyle? getStyleMedium(BuildContext context){
+    return Theme.of(context).textTheme.displayLarge;
   }
 
-  static TextStyle getStyleSemiBold(){
-    return const TextStyle(
-      color: ColorManager.babyBlue,
-      fontWeight: FontWeightManager.semiBold,
-      fontSize: FontSize.s30 ,
-      fontFamily: FontFamilyManager.numberFont,
-    );
+  static TextStyle? getStyleSemiBold(context){
+    return Theme.of(context).textTheme.bodyLarge;
   }
 }

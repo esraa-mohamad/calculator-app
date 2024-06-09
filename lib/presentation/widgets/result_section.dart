@@ -18,7 +18,7 @@ class ResultSection extends StatelessWidget {
         children: [
           Text(
             '5 X 10' ,
-            style: StyleManager.getStyleMedium(),
+            style: StyleManager.getStyleMedium(context),
           ),
           const SizedBox(
             height: AppSize.s25,
@@ -27,7 +27,7 @@ class ResultSection extends StatelessWidget {
             alignment: Alignment.bottomRight,
             child: Text(
               '50' ,
-              style: StyleManager.getStyleMedium(),
+              style: StyleManager.getStyleMedium(context),
             ),
           ),
 

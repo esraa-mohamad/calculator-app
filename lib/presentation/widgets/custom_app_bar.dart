@@ -68,15 +68,12 @@ class _CustomAppBarState extends State<CustomAppBar> {
               ? Center(
                   child: Text(
                     'Dark',
-                    style: StyleManager.getStyleLight(),
+                    style: StyleManager.getStyleLight(context),
                   ),
                 )
               :  Center(child: Text(
             'Light',
-            style: StyleManager.getStyleLight().copyWith(
-
-              color: ColorManager.darkBlue
-            ),
+            style: StyleManager.getStyleLight(context),
           ),),
         ),
       ],

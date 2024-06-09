@@ -1,26 +1,40 @@
+import 'package:calculator_app/data/theme/change_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../resources/color_manager.dart';
 import '../resources/style_manager.dart';
 import '../resources/values_manager.dart';
 
 class CircleShape extends StatelessWidget {
-  const CircleShape({super.key, required this.text , this.circleColor =ColorManager.lightBlue });
+  const CircleShape(
+      {super.key,
+      required this.text,
+      this.circleColor, this.textColor, this.fontSize});
 
   final String text;
-  final Color circleColor;
+  final Color ? circleColor;
+  final Color ? textColor;
+  final double ? fontSize ;
+
   @override
   Widget build(BuildContext context) {
-    return CircleAvatar(
-      backgroundColor: circleColor,
-      radius: AppSize.s40,
-      child: TextButton(
-        onPressed: (){},
-        child: Text(
-            text,
-            style: StyleManager.getStyleRegular()
-        ),
-      ),
+    return Consumer<ThemeProvider>(
+        builder: (context , themeProvider , child) {
+          final color = circleColor ?? (themeProvider.isDarkTheme ? ColorManager.lightBlue : ColorManager.lightDarkBlue);
+          return CircleAvatar(
+            backgroundColor: color,
+            radius: AppSize.s40,
+            child: TextButton(
+              onPressed: () {},
+              child: Text(text, style: StyleManager.getStyleRegular(context)!.copyWith(
+                color: textColor ,
+                fontSize: fontSize,
+              ),
+              ),
+            ),
+          );
+        }
     );
   }
 }
