@@ -29,10 +29,11 @@ class CalculatorSection extends StatelessWidget {
               crossAxisCount: 4,
               padding: const EdgeInsets.all(20),
               crossAxisSpacing: 10,
-              mainAxisSpacing: 15,
+              mainAxisSpacing: 10,
               children:  [
                 CircleShape(
                   text: 'DEL',
+                  fontSize: FontSize.s20,
                   onPressed: ()=> calculatorProvider.buttonPressed('DEL'),
                 ),
                 CircleShape(
@@ -105,7 +106,7 @@ class CalculatorSection extends StatelessWidget {
                 ),
                 SquareShape(
                   text: 'ANS',
-                  fontSize: FontSize.s22,
+                  fontSize: FontSize.s20,
                   fontFamily: FontFamilyManager.textFont,
                   colorText: ColorManager.white,
                   colorShape: ColorManager.blue,
