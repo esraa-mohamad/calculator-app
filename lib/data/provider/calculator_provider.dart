@@ -34,7 +34,6 @@ class CalculatorProvider extends ChangeNotifier {
     _expression = '';
     _error = '';
     _isLastActionEquals = false;
-    //_lastResult ='';
   }
 
   void _delete() {
@@ -51,7 +50,6 @@ class CalculatorProvider extends ChangeNotifier {
       final expression = Expression.parse(_expression.replaceAll('X', '*'));
       final result = evaluator.eval(expression, {});
       _display = result.toString();
-      //_expression = _display;
       _lastResult = _display;
       _isLastActionEquals = true;
     } catch (e) {
@@ -63,16 +61,22 @@ class CalculatorProvider extends ChangeNotifier {
 
   void _appendExpression(String value) {
     if (_isLastActionEquals) {
-      _expression = _lastResult;
+      if (RegExp(r'^[0-9]$').hasMatch(value)) {
+        // If the value is a number, clear expression and start new
+        _expression = value;
+      } else {
+        // If the value is an operator, start new expression with the last result and operator
+        _expression = _lastResult + value;
+      }
       _display = '';
       _isLastActionEquals = false;
-    }
-    if (_display == '0' && value != '.') {
-      _expression = value;
     } else {
-      _expression += value;
+      if (_display == '0' && value != '.') {
+        _expression = value;
+      } else {
+        _expression += value;
+      }
     }
-    //_display = _expression;
   }
 
   void _useAns() {
