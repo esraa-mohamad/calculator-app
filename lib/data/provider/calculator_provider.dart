@@ -7,12 +7,17 @@ class CalculatorProvider extends ChangeNotifier {
   String _error = '';
   String _lastResult = '';
   bool _isLastActionEquals = false;
+  final List<Map<String, String>> _history = [];
+
 
   String get display => _display;
 
   String get result => _expression;
 
   String get error => _error;
+
+  List<Map<String, String>> get history => _history;
+
 
   void buttonPressed(String buttonText) {
     if (buttonText == 'AC') {
@@ -50,6 +55,10 @@ class CalculatorProvider extends ChangeNotifier {
       final expression = Expression.parse(_expression.replaceAll('X', '*'));
       final result = evaluator.eval(expression, {});
       _display = result.toString();
+      _history.add({
+        'expression': _expression,
+        'result': _display,
+      });
       _lastResult = _display;
       _isLastActionEquals = true;
     } catch (e) {
@@ -83,5 +92,9 @@ class CalculatorProvider extends ChangeNotifier {
     if (_lastResult.isNotEmpty) {
       _expression += _lastResult;
     }
+  }
+  void clearHistory() {
+    _history.clear();
+    notifyListeners();
   }
 }
