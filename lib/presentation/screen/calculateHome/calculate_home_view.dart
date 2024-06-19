@@ -1,6 +1,7 @@
 import 'package:calculator_app/presentation/resources/color_manager.dart';
 import 'package:calculator_app/presentation/widgets/calculator_section.dart';
 import 'package:calculator_app/presentation/widgets/custom_app_bar.dart';
+import 'package:calculator_app/presentation/widgets/custom_drawer.dart';
 import 'package:calculator_app/presentation/widgets/result_section.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -16,6 +17,7 @@ class CalculatesHomeView extends StatefulWidget {
 }
 
 class _CalculatesHomeViewState extends State<CalculatesHomeView> {
+  final GlobalKey<ScaffoldState> _key = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +25,9 @@ class _CalculatesHomeViewState extends State<CalculatesHomeView> {
       builder: (context , themeProvider , child){
         bool position = themeProvider.isDarkTheme;
         return Scaffold(
+          key: _key,
           backgroundColor: position ? ColorManager.lightBabyBlue : ColorManager.darkBlue,
+         drawer:const CustomDrawer(),
           body: SafeArea(
             child: CustomScrollView(
               slivers: [
@@ -35,6 +39,10 @@ class _CalculatesHomeViewState extends State<CalculatesHomeView> {
                           Provider.of<ThemeProvider>(context, listen: false).toggleTheme();
                         },
                         positive: position,
+                        onPressed: () {
+                          _key.currentState!.openDrawer();
+                        }
+                        ,
                       )
                   ),
                 ),
